@@ -1,0 +1,32 @@
+def ellipticCurveAddition(p1,p2,a)
+
+inputs: p1, p2, a (2 points and elliptic curve coefficient)
+check O cases, p1 == p2, else
+    if p1 == O 
+        then p3 = p2
+    if p2 == O 
+        then p3 = p1
+    if p1 is reflection of p2 
+        then p3 = O 
+    if p1 == p2
+        then m = slopeCalc_same(p1,a)
+        x3 = m**2 - p1[0]-p2[0]
+        y3 = m(p1[0]-x3) - p1[1]
+        p3 = (x3,y3) 
+    else
+        then m = slopeCalc_diff(p1,p2)
+        x3 = m**2 - p1[0]-p2[0]
+        y3 = m(p1[0]-x3) - p1[1]
+        p3 = (x3,y3) 
+    return p3
+
+
+output: p3
+
+
+slopeCalc_same(p1,a)
+    return (3*p1[0]**2+a)/(2*p1[1])
+
+
+slopeCalc_diff(p1,p2)
+    return (p2[1]-p1[1])/(p2[0]-p1[0])
